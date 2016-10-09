@@ -1,0 +1,10 @@
+{
+  "solution": {
+    "name": "sp-user-group-demo-client-side-solution",
+    "id": "c3be07a1-e39e-448b-8f46-2ee16f1e784a",
+    "version": "1.0.0.0"
+  },
+  "paths": {
+    "zippedPackage": "solution/sp-user-group-demo.spapp"
+  }
+}

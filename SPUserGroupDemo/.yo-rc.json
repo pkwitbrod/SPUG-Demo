@@ -1,0 +1,7 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "libraryName": "sp-user-group-demo",
+    "libraryId": "c3be07a1-e39e-448b-8f46-2ee16f1e784a",
+    "framework": "none"
+  }
+}
