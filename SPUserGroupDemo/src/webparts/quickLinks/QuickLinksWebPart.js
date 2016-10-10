@@ -13,7 +13,9 @@ var QuickLinksWebPart = (function (_super) {
         _super.call(this, context);
     }
     QuickLinksWebPart.prototype.render = function () {
-        this.domElement.innerHTML = "\n      <div class=\"" + QuickLinks_module_scss_1.default.quickLinks + "\">\n        <div class=\"" + QuickLinks_module_scss_1.default.container + "\">\n          <div class=\"ms-Grid-row ms-bgColor-themeDark ms-fontColor-white " + QuickLinks_module_scss_1.default.row + "\">\n            <div class=\"ms-Grid-col ms-u-lg10 ms-u-xl8 ms-u-xlPush2 ms-u-lgPush1\">\n              <span class=\"ms-font-xl ms-fontColor-white\">Welcome to SharePoint!</span>\n              <p class=\"ms-font-l ms-fontColor-white\">Customize SharePoint experiences using Web Parts.</p>\n              <p class=\"ms-font-l ms-fontColor-white\">" + this.properties.description + "</p>\n              <a href=\"https://github.com/SharePoint/sp-dev-docs/wiki\" class=\"ms-Button " + QuickLinks_module_scss_1.default.button + "\">\n                <span class=\"ms-Button-label\">Learn more</span>\n              </a>\n            </div>\n          </div>\n        </div>\n      </div>";
+        var sNum = this.properties.count;
+        var iNum = +sNum;
+        this.domElement.innerHTML = "\n      <div class=\"" + QuickLinks_module_scss_1.default.quickLinks + "\">\n        <div class=\"" + QuickLinks_module_scss_1.default.container + "\">\n          <div class=\"ms-Grid-row ms-bgColor-themeDark ms-fontColor-white " + QuickLinks_module_scss_1.default.row + "\">\n            <div class=\"ms-Grid-col ms-u-lg10 ms-u-xl8 ms-u-xlPush2 ms-u-lgPush1\">\n              <span class=\"ms-font-xl ms-fontColor-white\">Welcome to SharePoint!</span>\n              <p class=\"ms-font-l ms-fontColor-white\">Customize SharePoint experiences using Web Parts.</p>\n              <p class=\"ms-font-l ms-fontColor-white\">" + this.properties.description + "</p>\n              <p class=\"ms-font-l ms-fontColor-white\">" + this.properties.count + "</p>\n              <a href=\"https://github.com/SharePoint/sp-dev-docs/wiki\" class=\"ms-Button " + QuickLinks_module_scss_1.default.button + "\">\n                <span class=\"ms-Button-label\">Learn more</span>\n              </a>\n            </div>\n          </div>\n        </div>\n      </div>";
     };
     Object.defineProperty(QuickLinksWebPart.prototype, "propertyPaneSettings", {
         get: function () {
@@ -30,8 +32,8 @@ var QuickLinksWebPart = (function (_super) {
                                     sp_client_preview_1.PropertyPaneTextField("description", {
                                         label: "Description"
                                     }),
-                                    sp_client_preview_1.PropertyPaneDropdown("test2", {
-                                        label: "Dropdown",
+                                    sp_client_preview_1.PropertyPaneDropdown("count", {
+                                        label: "Count",
                                         options: [
                                             { key: "1", text: "One" },
                                             { key: "2", text: "Two" },

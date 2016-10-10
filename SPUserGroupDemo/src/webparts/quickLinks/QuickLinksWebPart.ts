@@ -17,6 +17,9 @@ export default class QuickLinksWebPart extends BaseClientSideWebPart<IQuickLinks
   }
 
   public render(): void {
+    let sNum: string = this.properties.count;
+    let iNum: number = +sNum;
+
     this.domElement.innerHTML = `
       <div class="${styles.quickLinks}">
         <div class="${styles.container}">
@@ -25,6 +28,7 @@ export default class QuickLinksWebPart extends BaseClientSideWebPart<IQuickLinks
               <span class="ms-font-xl ms-fontColor-white">Welcome to SharePoint!</span>
               <p class="ms-font-l ms-fontColor-white">Customize SharePoint experiences using Web Parts.</p>
               <p class="ms-font-l ms-fontColor-white">${this.properties.description}</p>
+              <p class="ms-font-l ms-fontColor-white">${this.properties.count}</p>
               <a href="https://github.com/SharePoint/sp-dev-docs/wiki" class="ms-Button ${styles.button}">
                 <span class="ms-Button-label">Learn more</span>
               </a>
@@ -48,8 +52,8 @@ export default class QuickLinksWebPart extends BaseClientSideWebPart<IQuickLinks
               PropertyPaneTextField("description", {
                 label: "Description"
               }),
-              PropertyPaneDropdown("test2", {
-                label: "Dropdown",
+              PropertyPaneDropdown("count", {
+                label: "Count",
                 options: [
                   { key: "1", text: "One" },
                   { key: "2", text: "Two" },
