@@ -17,8 +17,9 @@ export interface ISPLinks {
 }
 
 export interface ISPLink {
-  Name: string;
+  Title: string;
   link: string;
+  Id: number;
 }
 
 export default class QuickLinksWebPart extends BaseClientSideWebPart<IQuickLinksWebPartProps> {
@@ -39,10 +40,10 @@ export default class QuickLinksWebPart extends BaseClientSideWebPart<IQuickLinks
         const listData: ISPLinks = {
             value:
             [
-              { Name: "Google", link: "http://www.google.com" },
-              { Name: "Microsoft", link: "http://www.microsoft.com"},
-              { Name: "TypScript", link: "https://www.typescriptlang.org/"},
-              { Name: "Yahoo", link: "http://www.yahoo.com" }
+              { Title: "Google", link: "http://www.google.com", Id: 1 },
+              { Title: "Microsoft", link: "http://www.microsoft.com", Id: 2 },
+              { Title: "TypScript", link: "https://www.typescriptlang.org/", Id: 3},
+              { Title: "Yahoo", link: "http://www.yahoo.com", Id: 4}
             ]
             };
         return listData;
@@ -54,7 +55,7 @@ private _renderList(items: ISPLink[]): void {
   for (let i = 0; i < +this.properties.count; i++) {
       html += `
       <a href="${items[i].link}" class="img-group" >
-          <strong>${items[i].Name}</strong></br>
+          <strong>${items[i].Title}</strong></br>
         </div>
       </div>
     </a>`;

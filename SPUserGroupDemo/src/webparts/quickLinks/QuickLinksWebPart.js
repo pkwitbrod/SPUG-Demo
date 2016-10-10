@@ -24,10 +24,10 @@ var QuickLinksWebPart = (function (_super) {
         return MockHttpClient_1.default.get(this.context.pageContext.web.absoluteUrl).then(function () {
             var listData = {
                 value: [
-                    { Name: "Google", link: "http://www.google.com" },
-                    { Name: "Microsoft", link: "http://www.microsoft.com" },
-                    { Name: "TypScript", link: "https://www.typescriptlang.org/" },
-                    { Name: "Yahoo", link: "http://www.yahoo.com" }
+                    { Title: "Google", link: "http://www.google.com", Id: 1 },
+                    { Title: "Microsoft", link: "http://www.microsoft.com", Id: 2 },
+                    { Title: "TypScript", link: "https://www.typescriptlang.org/", Id: 3 },
+                    { Title: "Yahoo", link: "http://www.yahoo.com", Id: 4 }
                 ]
             };
             return listData;
@@ -36,7 +36,7 @@ var QuickLinksWebPart = (function (_super) {
     QuickLinksWebPart.prototype._renderList = function (items) {
         var html = "";
         for (var i = 0; i < +this.properties.count; i++) {
-            html += "\n      <a href=\"" + items[i].link + "\" class=\"img-group\" >\n          <strong>" + items[i].Name + "</strong></br>\n        </div>\n      </div>\n    </a>";
+            html += "\n      <a href=\"" + items[i].link + "\" class=\"img-group\" >\n          <strong>" + items[i].Title + "</strong></br>\n        </div>\n      </div>\n    </a>";
         }
         var listContainer = this.domElement.querySelector("#spListContainer");
         listContainer.innerHTML = html;
