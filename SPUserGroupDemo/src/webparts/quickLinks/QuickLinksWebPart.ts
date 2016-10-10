@@ -85,6 +85,7 @@ private _renderListAsync(): void {
             <div class="ms-Grid-col ms-u-lg10 ms-u-xl8 ms-u-xlPush2 ms-u-lgPush1">
               <span class="ms-font-xl ms-fontColor-white">Welcome to SharePoint!</span>
               <p class="ms-font-l ms-fontColor-white">Customize SharePoint experiences using Web Parts.</p>
+              <p class="ms-font-l ms-fontColor-white">Development in ${this.context.pageContext.web.title}</p>
               <p class="ms-font-l ms-fontColor-white">${this.properties.description}</p>
               <p class="ms-font-l ms-fontColor-white">${this.properties.count}</p>
               <div id="spListContainer" />
