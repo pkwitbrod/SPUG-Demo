@@ -5,16 +5,74 @@ import {
   PropertyPaneTextField,
   PropertyPaneDropdown
 } from "@microsoft/sp-client-preview";
+import { EnvironmentType } from "@microsoft/sp-client-base";
 
 import styles from "./QuickLinks.module.scss";
 import * as strings from "quickLinksStrings";
 import { IQuickLinksWebPartProps } from "./IQuickLinksWebPartProps";
+import MockHttpClient from "./MockHttpClient";
+
+export interface ISPLinks {
+  value: ISPLink[];
+}
+
+export interface ISPLink {
+  Name: string;
+  link: string;
+}
 
 export default class QuickLinksWebPart extends BaseClientSideWebPart<IQuickLinksWebPartProps> {
 
   public constructor(context: IWebPartContext) {
     super(context);
   }
+
+  private _getListData(): Promise<ISPLinks> {
+    return this.context.httpClient.get(this.context.pageContext.web.absoluteUrl + `/_api/web/lists?$filter=Hidden eq false`)
+        .then((response: Response) => {
+        return response.json();
+        });
+}
+
+  private _getMockListData(): Promise<ISPLinks> {
+    return MockHttpClient.get(this.context.pageContext.web.absoluteUrl).then(() => {
+        const listData: ISPLinks = {
+            value:
+            [
+              { Name: "Google", link: "http://www.google.com" },
+              { Name: "Microsoft", link: "http://www.microsoft.com"},
+              { Name: "TypScript", link: "https://www.typescriptlang.org/"},
+              { Name: "Yahoo", link: "http://www.yahoo.com" }
+            ]
+            };
+        return listData;
+    }) as Promise<ISPLinks>;
+}
+
+private _renderList(items: ISPLink[]): void {
+  let html: string = "";
+  for (let i = 0; i < +this.properties.count; i++) {
+      html += `
+      <a href="${items[i].link}" class="img-group" >
+          <strong>${items[i].Name}</strong></br>
+        </div>
+      </div>
+    </a>`;
+  }
+
+  const listContainer: Element = this.domElement.querySelector("#spListContainer");
+  listContainer.innerHTML = html;
+}
+
+private _renderListAsync(): void {
+  // Local environment
+  console.log("This is a thing");
+  if (this.context.environment.type === EnvironmentType.Local) {
+    this._getMockListData().then((response) => {
+      this._renderList(response.value);
+    });
+  }
+}
 
   public render(): void {
     let sNum: string = this.properties.count;
@@ -29,13 +87,13 @@ export default class QuickLinksWebPart extends BaseClientSideWebPart<IQuickLinks
               <p class="ms-font-l ms-fontColor-white">Customize SharePoint experiences using Web Parts.</p>
               <p class="ms-font-l ms-fontColor-white">${this.properties.description}</p>
               <p class="ms-font-l ms-fontColor-white">${this.properties.count}</p>
-              <a href="https://github.com/SharePoint/sp-dev-docs/wiki" class="ms-Button ${styles.button}">
-                <span class="ms-Button-label">Learn more</span>
-              </a>
+              <div id="spListContainer" />
             </div>
           </div>
         </div>
+          <div id="spListContainer" />
       </div>`;
+      this._renderListAsync();
   }
 
   protected get propertyPaneSettings(): IPropertyPaneSettings {
