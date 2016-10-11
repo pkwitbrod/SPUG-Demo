@@ -1,4 +1,18 @@
 .quickLinks {
+
+  a{
+    text-decoration: none;
+    color: white;
+    transition: color 0.3s ease;
+    &:visited {
+      color: white;
+    }
+    &:hover {
+      color: blue;
+    }
+  }
+
+
   .container {
     max-width: 700px;
     margin: 0px auto;
@@ -9,13 +23,44 @@
     padding: 20px;
   }
 
-  .listItem {
+  .listContainer {
     max-width: 715px;
     margin: 5px auto 5px auto;
-    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+    font-size: 1.5em;
+
   }
 
   .button {
     text-decoration: none;
+    background-color: #4CAF50;
+    border-right: #4CAF50;
   }
+
+  input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+  @keyframes bounce {
+  	0%, 20%, 60%, 100% {
+  		-webkit-transform: translateY(0);
+  		transform: translateY(0);
+  	}
+
+  	40% {
+  		-webkit-transform: translateY(-10px);
+  		transform: translateY(-10px);
+  	}
+
+  	80% {
+  		-webkit-transform: translateY(-5px);
+  		transform: translateY(-5px);
+  	}
+  }
+
 }
