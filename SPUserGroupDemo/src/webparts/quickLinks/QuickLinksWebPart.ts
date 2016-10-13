@@ -3,7 +3,7 @@ import {
   IPropertyPaneSettings,
   IWebPartContext,
   PropertyPaneTextField,
-  PropertyPaneDropdown
+  PropertyPaneDropdown // Notice that we added another Import. Now we can use dropdowns in the side bar.
 } from "@microsoft/sp-client-preview";
 
 import styles from "./QuickLinks.module.scss";
@@ -17,9 +17,14 @@ export default class QuickLinksWebPart extends BaseClientSideWebPart<IQuickLinks
   }
 
   public render(): void {
-    let sNum: string = this.properties.count;
+    // Typescript and ES6 use two new variable declarations. let and const.
+    // They do a lot. const can never change (unless it's an array or object but I digress)
+    // They both help with 'solve' closure.
+    let sNum: string = this.properties.count; //this.properties.count refers to the webpart properties in the side pannel.
     let iNum: number = +sNum;
-
+            // This is type in stypscript. iNum with always be a number. If I try
+            // to set it to 1 instead of "1" the gulp task will throw and error and
+            // my code won't transpile. I use these variables later.
     this.domElement.innerHTML = `
       <div class="${styles.quickLinks}">
         <div class="${styles.container}">
@@ -39,7 +44,7 @@ export default class QuickLinksWebPart extends BaseClientSideWebPart<IQuickLinks
   }
 
   protected get propertyPaneSettings(): IPropertyPaneSettings {
-    return {
+    return { // This JSON object is what makes the side bar. 
       pages: [
         {
           header: {
