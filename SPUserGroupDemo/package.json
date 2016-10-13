@@ -1,3 +1,7 @@
+/*
+  This file dictates what is installed but NPM when you install a package. It's just a list 
+  of what you need.
+*/
 {
   "name": "sp-user-group-demo",
   "version": "0.0.1",

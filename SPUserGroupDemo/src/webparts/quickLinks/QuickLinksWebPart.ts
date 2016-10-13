@@ -1,11 +1,17 @@
 import {
+  /*These are basically using statements. Webpack and Gulp allow you to
+   use these in your code without manually adding the script links. Here is what
+   Mozilla says about them...
+   The import statement is used to import functions,
+   objects or primitives that have been exported
+   from an external module, another script, etc.*/
   BaseClientSideWebPart,
   IPropertyPaneSettings,
   IWebPartContext,
   PropertyPaneTextField
 } from '@microsoft/sp-client-preview';
 
-import styles from './QuickLinks.module.scss';
+import styles from './QuickLinks.module.scss';   // These are internal resources that are imported from elsewhere in your project.
 import * as strings from 'quickLinksStrings';
 import { IQuickLinksWebPartProps } from './IQuickLinksWebPartProps';
 
@@ -15,7 +21,7 @@ export default class QuickLinksWebPart extends BaseClientSideWebPart<IQuickLinks
     super(context);
   }
 
-  public render(): void {
+  public render(): void {   //We can use styles because it was imported above.
     this.domElement.innerHTML = `
       <div class="${styles.quickLinks}">
         <div class="${styles.container}">
@@ -33,7 +39,11 @@ export default class QuickLinksWebPart extends BaseClientSideWebPart<IQuickLinks
       </div>`;
   }
 
+  // The string formatting above using tick marks(`) and ${} syntax is an es6 and Typscript feature.
+  // It makes string concatanation much more intuitive for C# and powershell programmers.
+
   protected get propertyPaneSettings(): IPropertyPaneSettings {
+    // This is what goes in the property pane.
     return {
       pages: [
         {

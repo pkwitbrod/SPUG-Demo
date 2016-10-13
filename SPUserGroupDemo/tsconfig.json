@@ -7,3 +7,7 @@
     "sourceMap": true
   }
 }
+/*
+  The tsconfig.json sets allows you to configure the transpilation of your
+  typescript to javascript. You should most likely leave this alone.
+*/
